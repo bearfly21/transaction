@@ -44,3 +44,26 @@ class ConfirmedEmailView(APIView):
         user.save()
         token.delete()
         return Response("email confirmed")
+    
+
+class LogoutView(APIView):
+    def post(self, request):
+        token = request.data.get("refresh")
+        token = RefreshToken(token)
+        token.blacklist()
+        return Response("You are logged out")
+
+        
+
+class ConfirmEmailView(APIView):
+    def get(self, request, token):  
+        try:
+            confirm = Token.objects.get(token=token)
+            user = confirm.user
+            user.is_email_confirmed = True
+            user.is_active = True
+            user.save()
+            confirm.delete()
+            return Response({"message": "Email confirmed."})
+        except Token.DoesNotExist:
+            return Response({"error": "Invalid or expired token."}, status=400)

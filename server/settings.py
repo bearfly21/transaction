@@ -35,7 +35,7 @@ SECRET_KEY = env("SECRET_KEY")
 
 DEBUG = env("DEBUG")
 
-ALLOWED_HOSTS = env("ALLOWED_HOSTS")
+ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
 
 
 # Application definition
@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app.apps.AppConfig',
-    'accounts'
+    'accounts',
     'rest_framework',
     'rest_framework_simplejwt',
     'drf_yasg',
@@ -177,4 +177,4 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'sultonovas21@gmail.com'
 EMAIL_HOST_PASSWORD = 'lvzwaheawltrvcpg'
-INSTALLED_APPS += ['drf_yasg']
+# INSTALLED_APPS += ['drf_yasg']

@@ -9,7 +9,7 @@ services:
     env_file:
       - ./.env
     depends_on:
-      - db
+      - my_db
 
   my_db:
     image: postgres:15
